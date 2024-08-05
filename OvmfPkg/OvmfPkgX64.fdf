@@ -1,9 +1,6 @@
 ## @file
 #  Open Virtual Machine Firmware: FDF
 #
-#  Copyright (c) 2006 - 2019, Intel Corporation. All rights reserved.<BR>
-#  (C) Copyright 2016 Hewlett Packard Enterprise Development LP<BR>
-#
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
 ##
@@ -58,6 +55,90 @@ FV = FVMAIN_COMPACT
 $(FVMAIN_SIZE)|$(SECFV_SIZE)
 FV = SECFV
 
+#
+# Additional OVMF_CODE configurations
+#
+[FD.OVMF_CODE_4M]
+BaseAddress   = $(CODE_BASE_ADDRESS)
+Size          = 0x00400000
+ErasePolarity = 1
+BlockSize     = 0x10000
+NumBlocks     = 64
+
+0x00000000|$(FVMAIN_SIZE)
+FV = FVMAIN_COMPACT
+
+$(FVMAIN_SIZE)|$(SECFV_SIZE)
+FV = SECFV
+
+[FD.OVMF_CODE_4M_MS]
+BaseAddress   = $(CODE_BASE_ADDRESS)
+Size          = 0x00400000
+ErasePolarity = 1
+BlockSize     = 0x10000
+NumBlocks     = 64
+
+0x00000000|$(FVMAIN_SIZE)
+FV = FVMAIN_COMPACT
+
+$(FVMAIN_SIZE)|$(SECFV_SIZE)
+FV = SECFV
+
+[FD.OVMF_CODE_4M_SECBOOT]
+BaseAddress   = $(CODE_BASE_ADDRESS)
+Size          = 0x00400000
+ErasePolarity = 1
+BlockSize     = 0x10000
+NumBlocks     = 64
+
+0x00000000|$(FVMAIN_SIZE)
+FV = FVMAIN_COMPACT
+
+$(FVMAIN_SIZE)|$(SECFV_SIZE)
+FV = SECFV
+
+[FD.OVMF_CODE_4M_SNAKEOIL]
+BaseAddress   = $(CODE_BASE_ADDRESS)
+Size          = 0x00400000
+ErasePolarity = 1
+BlockSize     = 0x10000
+NumBlocks     = 64
+
+0x00000000|$(FVMAIN_SIZE)
+FV = FVMAIN_COMPACT
+
+$(FVMAIN_SIZE)|$(SECFV_SIZE)
+FV = SECFV
+
+#
+# Additional OVMF_VARS configurations
+#
+[FD.OVMF_VARS_4M]
+BaseAddress   = $(FW_BASE_ADDRESS)
+Size          = 0x00400000
+ErasePolarity = 1
+BlockSize     = 0x10000
+NumBlocks     = 64
+
+!include OvmfPkg/Include/Fdf/VarStore.fdf.inc
+
+[FD.OVMF_VARS_4M_MS]
+BaseAddress   = $(FW_BASE_ADDRESS)
+Size          = 0x00400000
+ErasePolarity = 1
+BlockSize     = 0x10000
+NumBlocks     = 64
+
+!include OvmfPkg/Include/Fdf/VarStore.fdf.inc
+
+[FD.OVMF_VARS_4M_SNAKEOIL]
+BaseAddress   = $(FW_BASE_ADDRESS)
+Size          = 0x00400000
+ErasePolarity = 1
+BlockSize     = 0x10000
+NumBlocks     = 64
+
+!include OvmfPkg/Include/Fdf/VarStore.fdf.inc
 ################################################################################
 
 [FD.MEMFD]
